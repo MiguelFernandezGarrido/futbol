@@ -64,13 +64,18 @@ class _HomeView extends StatelessWidget {
                     playersResponse.squad![index].id,
                   );
                 } else {
-                  print("hola");
-                  service.postPlayer(
-                      PlayerFirebase(id: playersResponse.squad![index].id));
+                  print(
+                      PlayerFirebase(id: playersResponse.squad![index].id).id);
+                  print(PlayerFirebase(id: playersResponse.squad![index].id)
+                      .name);
+                  service.postPlayer(PlayerFirebase(
+                      id: playersResponse.squad![index].id,
+                      name: playersResponse.squad![index].name));
                 }
               },
               child: GetIcon(
-                isFavorite: service.isFavorite(playersResponse.squad![index]),
+                // isFavorite: service.isFavorite(playersResponse.squad![index]),
+                isFavorite: true,
               ),
             ),
           ]),

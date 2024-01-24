@@ -20,17 +20,19 @@ class PlayersService {
 
 //
   Future<void> postPlayer(PlayerFirebase player) async {
-    Response response =
-        await post(Uri.parse(_uriPost), body: jsonEncode(player.toMap()));
-    print(response);
+    Response response = await post(Uri.parse(_uriPost + '.json'),
+        body: jsonEncode(player.toMap()));
+    print(response.body);
   }
 
   isFavorite(Player player) {
-    return getPlayerFirebase(player.id);
+    // return getPlayerFirebase(player.id);
+    return false;
   }
 
   Future<bool> getPlayerFirebase(int? id) async {
     Response response = await get(Uri.parse(_uriPost));
+    print(response.body);
     return jsonDecode(response.body)['$id'] != null;
   }
 
@@ -40,6 +42,7 @@ class PlayersService {
 
   getPlayersFirebase() async {
     Response response = await get(Uri.parse(_uriPost));
+    print(response.body);
     return jsonDecode(response.body);
   }
 }
